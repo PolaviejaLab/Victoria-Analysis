@@ -1,4 +1,7 @@
 function data = readResultsFile(filename)
+% READRESULTSFILE  Loads the results file from a .csv into an
+%  array of structures.
+
     fid = fopen(filename, 'r');
 
     % Column names, we forgot to add this to the files themselves

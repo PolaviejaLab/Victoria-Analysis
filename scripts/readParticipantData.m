@@ -1,8 +1,16 @@
 function data = readParticipantData(participant, datetime, directory)
+% READPARTICIPANTDATA  Read all participant data from the directory
+%  specified.
+%
+%  .version     Version number of the structure
+%  .result      Data from the CSV results file (see READRESULTSFILE)
+%  .log         Data from the trial log (see READTRIALLOG)
+%  .hands       Palm positions for every trial (time, x, y, z)
+%
 
     % If no directory is specified, use data directory as default
     if(nargin < 3)
-        directory = fullfile('..', 'data', participant);;
+        directory = fullfile('..', 'data', participant);
     end
    
     % Extract time (in hours) from a string (yyyy-MM-dd hh:mm)
