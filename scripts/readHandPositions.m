@@ -6,7 +6,7 @@ function txyz = readHandPositions(filename)
 %  Missing data is represented using NaNs.
 %
 
-    fid = fopen(filename, 'r');     
+    fid = fopen(filename, 'r');
     data = textscan(fid, '%[^,], %[^,], %f, %f, %f');
 
     timestamps = cellfun(@datenum8601, data{1});    
