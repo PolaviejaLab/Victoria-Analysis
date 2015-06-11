@@ -77,7 +77,6 @@ function trials = readTrialLog(filename)
         % Determine time proprioceptive drift was measured
         if(strcmp(splits{2}, 'ExperimentController') && strcmp(splits{3}, 'Event MeasureProprioceptiveDrift'))
             trial.time_drift = datenum8601(splits{1});
-            disp('ok');
         end
         
         % When trial is finished, add it to the list of trials
