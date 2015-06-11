@@ -4,10 +4,16 @@ participants = {
 };
 
 for i_participant = 1:size(participants, 1)
-   data = readParticipantData( ...
+    data = readParticipantData( ...
         participants{i_participant, 1}, ...
         participants{i_participant, 2}, ...
         participants{i_participant, 3});
    
-   save(['../../data/' lower(participants{i_participant, 1}) '.mat']);
+    version = data.version;
+    results = data.results;
+    log = data.log;
+    hands = data.hands;
+    
+    save(['../../data/' lower(participants{i_participant, 1}) '.mat'], ...
+        'version', 'results', 'log', 'hands');
 end

@@ -42,7 +42,7 @@ function data = readParticipantData(participant, datetime, directory)
                     trial_nr = str2double(tokens{1});
 
                     fprintf('Reading hand positions for trial %d\n', trial_nr);
-                    hand_positions{trial_nr} = readHandPositions(fullfilename);
+                    hand_positions{trial_nr} = readHandPositions(fullfilename);                    
                 else
                     results{end + 1} = readResultsFile(fullfilename);
                 end
@@ -53,11 +53,10 @@ function data = readParticipantData(participant, datetime, directory)
     
     % Combine results (drift) from all files
     results = [results{:}];
-    
+
     data = struct( ...
         'version', 1, ...
         'results', results, ...
-        'log', log, ...
-        'hands', hand_positions ...
-    );
+        'log', log);
+    data.hands = hand_positions;
 end
