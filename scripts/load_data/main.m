@@ -1,6 +1,9 @@
 
+dataDirectory = 'C:\Users\User\Documents\MATLAB\ExperimentDiscontinuity';
+cacheDirectory = dataDirectory;
+
 participants = {
-    'Eric', '2015-06-10 02.52', '../../data/eric'
+    'Mert', '2015-06-09 06.02', fullfile(dataDirectory, 'Subject3')
 };
 
 for i_participant = 1:size(participants, 1)
@@ -14,6 +17,6 @@ for i_participant = 1:size(participants, 1)
     log = data.log;
     hands = data.hands;
     
-    save(['../../data/' lower(participants{i_participant, 1}) '.mat'], ...
+    save([cacheDirectory '/' lower(participants{i_participant, 1}) '.mat'], ...
         'version', 'results', 'log', 'hands');
 end

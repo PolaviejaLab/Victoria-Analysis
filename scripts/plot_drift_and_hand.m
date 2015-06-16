@@ -1,6 +1,7 @@
 clear all;
-
-data = load('../data/eric.mat');
+dataDirectory = 'C:\Users\User\Documents\MATLAB\ExperimentDiscontinuity';
+cacheDirectory = dataDirectory;
+data = load([cacheDirectory '/mert.mat']);
 
 t_drift = [data.log.time_drift];
 drift = [data.results.proprioceptive_drift];
