@@ -62,6 +62,33 @@ function plot_drift_and_hand()
         
         title(config_.participants{i_participant, 1});
     end
+    
+    figure(7);
+    subplot(1, 2, 1); cla; hold on;
+    plot(nanmean(drift(:, 1:3)) * 100, 'bo-');
+    plot(nanmean(handp(:, 1:3)) / 10, 'rx-');
+
+    plot(4:6, nanmean(drift(:, 4:6)) * 100, 'bo-');
+    plot(4:6, nanmean(handp(:, 4:6)) / 10, 'rx-');
+
+    for i = 1:6
+        errorbar(i, nanmean(drift(:, i)) * 100, nanstd(drift(:, i) * 100) /sqrt(8), 'Color', 'blue');
+        errorbar(i, nanmean(handp(:, i)) / 10, nanstd(handp(:, i) / 10) / sqrt(8), 'Color', 'red');
+    end
+    
+    xlabel('Condition');
+    ylabel('Position (cm)');
+    
+    subplot(1, 2, 2); cla; hold on;
+    
+    index = (drift * 100) ./ (handp / 10);
+        
+    errorbar(1:3, nanmean(index(:, 1:3)), nanstd(index(:, 1:3)), 'ko-');
+    errorbar(1:3, nanmean(index(:, 4:6)), nanstd(index(:, 4:6)), 'ko-');
+    
+    xlabel('Condition');
+    ylabel('Index');
+    
 %     subplot(1, 2, 1);
 %     plot(hands(2:end, 1) / 10 + 1, '.-');
 %     subplot(1, 2, 2);
