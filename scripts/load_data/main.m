@@ -1,23 +1,30 @@
+function main()
 
-dataDirectory = 'C:\Users\User\Documents\MATLAB\ExperimentDiscontinuity';
-cacheDirectory = dataDirectory;
+    global config_;
 
-participants = {
-    'Mert', '2015-06-09 06.02', fullfile(dataDirectory, 'Subject3');
-    
-};
+    for i_participant = 1:size(config_.participants, 1)
+        filename = [lower(config_.participants{i_participant, 1}) '.mat'];
+        filename = fullfile(config_.cacheDirectory, filename);
+        
+        % Skip participant if file already exists
+        if(exist(filename, 'file'))
+            continue;
+        end
 
-for i_participant = 1:size(participants, 1)
-    data = readParticipantData( ...
-        participants{i_participant, 1}, ...
-        participants{i_participant, 2}, ...
-        participants{i_participant, 3});
-   
-    version = data.version;
-    results = data.results;
-    log = data.log;
-    hands = data.hands;
-    
-    save([cacheDirectory '/' lower(participants{i_participant, 1}) '.mat'], ...
-        'version', 'results', 'log', 'hands');
-end
+        fprintf('Loading data for %s\n', config_.participants{i_participant, 1});
+        
+        data = readParticipantData( ...
+            config_.participants{i_participant, 1}, ...
+            config_.participants{i_participant, 2}, ...
+            config_.participants{i_participant, 3});
+
+        fprintf('\n');
+        
+        % Save data to file
+        version = data.version;
+        results = data.results;
+        log = data.log;
+        hands = data.hands;
+
+        save(filename, 'version', 'results', 'log', 'hands');
+    end

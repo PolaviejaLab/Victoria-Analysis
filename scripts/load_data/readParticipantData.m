@@ -1,4 +1,4 @@
-function data = readParticipantData(participant, datetime, directory)
+function data = readParticipantData(participant, datetime, directory, debug)
 % READPARTICIPANTDATA  Read all participant data from the directory
 %  specified.
 %
@@ -12,26 +12,42 @@ function data = readParticipantData(participant, datetime, directory)
     if(nargin < 3)
         directory = fullfile('..', 'data', participant);
     end
+    
+    % Disable debug mode by default
+    if(nargin < 4)
+        debug = 0;
+    end
    
     % Extract time (in hours) from a string (yyyy-MM-dd hh:mm)
     time_from_datetime = @(t) str2double(t(12:13)) + str2double(t(14:15)) / 60;
 
     % Enumerate all files in data directory that start with date 
-    files = dir(fullfile(directory, [datetime(1:10) '*']));
+    if(~exist(directory, 'dir'))
+        error('Directory %s does not exist.', directory);
+    end
     
+    files = dir(fullfile(directory, [datetime(1:10) '*']));
+        
     % Get time of first file in dataset
     time = time_from_datetime(datetime);    
     results = {};
     
     for i_file = 1:numel(files)
         % Skip files that have a timestamp in the past
-        file_time = time_from_datetime(files(i_file).name);
-        if(file_time < time), continue; end
+        file_name = files(i_file).name;
+        file_time = time_from_datetime(file_name);
+        
+        if(file_time < time)
+            if(debug), fprintf('Skipping file %s because it is older than %s\n', file_name, datetime); end
+            continue; 
+        end
 
-        fullfilename = fullfile(directory, files(i_file).name);
+        fullfilename = fullfile(directory, file_name);
         [~, ~, ext] = fileparts(files(i_file).name);
         
         if(strcmp(ext, '.log'))
+            if(debug), fprintf('Reading trial log: %s\n', file_name); end
+            
             log = readTrialLog(fullfilename);
         else
             if(strcmp(ext, '.csv'))

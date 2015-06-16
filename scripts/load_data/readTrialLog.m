@@ -24,6 +24,11 @@ function trials = readTrialLog(filename)
     while(~feof(fid))
         line = fgets(fid);        
         splits = strsplit(line, '\t');
+        
+        if(numel(splits) < 3)
+            continue;
+        end
+        
         splits{3} = strtrim(splits{3});
 
         if(strcmp(splits{2}, 'ExperimentController'))
