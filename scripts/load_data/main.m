@@ -3,7 +3,8 @@ dataDirectory = 'C:\Users\User\Documents\MATLAB\ExperimentDiscontinuity';
 cacheDirectory = dataDirectory;
 
 participants = {
-    'Mert', '2015-06-09 06.02', fullfile(dataDirectory, 'Subject3')
+    'Mert', '2015-06-09 06.02', fullfile(dataDirectory, 'Subject3');
+    
 };
 
 for i_participant = 1:size(participants, 1)
