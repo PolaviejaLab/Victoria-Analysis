@@ -1,4 +1,5 @@
- 
+global config_; 
+
 results = orderresponses();
 
 
@@ -116,14 +117,6 @@ for i_condition = 1:numel(conditions)
     
   
 end
-
-for i_question = 1:14
-    question = questions(i_question);
-    question_data = resultsquestion.(['question' num2str(question)]);
-    questMatrix = question_data;
-    
-    
-end    
 
 
 

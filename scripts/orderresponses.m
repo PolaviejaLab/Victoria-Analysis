@@ -8,8 +8,9 @@ function [results, cube] = orderresponses ()
 %
 % cube is a 3d matrix question-by-condition-by-subject
 
+global config_;
 
-files = dir('Subject*');
+files = dir(fullfile(config_.dataDirectory, 'Subject*'));
 
 NSubjects = numel (files);
 results = struct();
@@ -18,8 +19,9 @@ map = [1 2 3 4 0 5 0 6];
 cube = nan(14, 6, NSubjects);
 
 for i_subject = 1:NSubjects
-    answersFile = fullfile(files(i_subject).name, 'answers.csv');
-    protocolFile = fullfile(files(i_subject).name, 'Protocol.csv');
+    answersFile = fullfile(config_.dataDirectory, files(i_subject).name, 'answers.csv');
+    protocolFile = fullfile(config_.dataDirectory, files(i_subject).name, 'protocol.csv');
+    
     
     [conditionOrder] = getconditionorder(protocolFile);
     questionnaireResponses = csvread(answersFile);

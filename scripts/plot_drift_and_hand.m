@@ -41,6 +41,7 @@ function plot_drift_and_hand()
     drift(:, 1) = [];
     handp(:, 1) = [];
     
+    figure (5),
     for i_participant = 1:n_participants
         subplot(2, 4, i_participant); cla; hold on;
         plot(drift(i_participant, 1:3) * 100, 'bo-');
