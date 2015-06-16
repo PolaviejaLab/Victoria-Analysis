@@ -57,5 +57,5 @@ for i = 1:Ntrials
     Likert(:, i) = CollectLikert(WindowSpecs,WindowLabel,InstructionsText,InstructionHeight,...
         ScaleLabels,ScaleLabelsHeight, ScaleSmallestValue, ...
         Questions, QuestionWidth, QuestionHeights, RequireAllAnswers, MissingValue);
-    csvwrite('answers.csv',Likert);
+    csvwrite('C:\Users\User\Google Drive\01. PhD\#. ExperimentDiscontinuity\SourceData\answers.csv',Likert);
 end
