@@ -22,7 +22,6 @@ for i_subject = 1:NSubjects
     answersFile = fullfile(config_.dataDirectory, files(i_subject).name, 'answers.csv');
     protocolFile = fullfile(config_.dataDirectory, files(i_subject).name, 'protocol.csv');
     
-    
     [conditionOrder] = getconditionorder(protocolFile);
     questionnaireResponses = csvread(answersFile);
     

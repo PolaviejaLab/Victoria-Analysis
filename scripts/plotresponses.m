@@ -1,8 +1,5 @@
 global config_; 
-
 results = orderresponses();
-
-
 conditions = [1 2 3 4 6 8];
 
 for i_condition = 1:numel(conditions)
