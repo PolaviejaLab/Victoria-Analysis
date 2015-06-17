@@ -34,3 +34,10 @@ for i_question = 1:size(cube, 1)
     xlim([0.5, 6.5]);
     ylim([0, 8]);
 end
+
+% 
+%         plot(drift(i_participant, 1:3) * 100, 'bo-');
+%         plot(handp(i_participant, 1:3) / 10, 'rx-');
+% 
+%         plot(4:6, drift(i_participant, 4:6) * 100, 'bo-');
+%         plot(4:6, handp(i_participant, 4:6) / 10, 'rx-');
