@@ -1,3 +1,6 @@
+
+results = orderresponses();
+
 figure (6),
 subplot(2, 3, 1); plot_diverging_stacked_bar(results.condition1);
 title ('Continuous Limb, Offset = 0 cm');
