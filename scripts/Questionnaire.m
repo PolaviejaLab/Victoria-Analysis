@@ -30,17 +30,16 @@ Questions{1} = 'During the experiment there were moments in which I felt as if I
 Questions{2} = 'During the experiment there were moments that I felt as if the virtual hand was my hand.';
 Questions{3} = 'During the experiment there were moments when it seemed like the virtual hand belonged to me.';
 Questions{4} = 'During the experiment there were times when it seemed that the virtual hand was part of my body.';
-Questions{5} = 'During the experiment I felt as if the virtual hand was physically resembling my real hand.';
-Questions{6} = 'During the experiment there were moments when I felt like my real hand were turning virtual.';
+Questions{5} = 'During the experiment I felt as if the virtual hand physically resembled my real hand.';
+Questions{6} = 'During the experiment there were moments when I felt like my real hand was turning virtual.';
 Questions{7} = 'During the experiment there were moments that I felt I could control the virtual hand.';
 Questions{8} = 'During the experiment there were moments that I felt that the movements of the virtual hand were caused by me.';
 Questions{9} = 'During the experiment there were moments that I felt that the movement of my hand was turning off the lights on the table.';
-Questions{10} = 'During the experiment there were times when I had the feeling of forgetting my own hand, focussing only on the movements of the virtual hand.';
-Questions{11} = 'During the experiment there were moments that I felt as if the virtual hand were controlling my hand.';
+Questions{10} = 'During the experiment there were times when I had the feeling of forgetting my own hand, focusing only on the movements of the virtual hand.';
+Questions{11} = 'During the experiment there were moments that I felt as if the virtual hand was controlling my hand.';
 Questions{12} = 'During the experiment there moments that it felt as if the virtual hand caused the movement of my hand.';
 Questions{13} = 'During the experiment there were times when it seemed like my hand was in the location the virtual hand.';
 Questions{14} = 'During the experiment there were times when it seemed as if the movement of my hand was located where the virtual was moving.';
-
 
 QuestionWidth = 700;  % Width of the question on the form, in pixels
 NQuestions = numel(Questions);
