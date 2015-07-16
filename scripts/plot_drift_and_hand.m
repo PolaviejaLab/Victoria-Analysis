@@ -16,23 +16,28 @@ for i_participant = 1:n_participants
     data = load(fullfile(config_.cacheDirectory, [participant '.mat']));
     
     t_drift = [data.log.time_drift];
-    
+
     drift(i_participant, :) = [data.results.proprioceptive_drift];
     offset = [data.results.offset];
     
     for i_condition = 1:n_conditions
-        % Remove nans
-        invalid = any(isnan(data.hands{i_condition}), 2);
-        data.hands{i_condition}(invalid, :) = [];
+        try
+            % Remove nans
+            invalid = any(isnan(data.hands{i_condition}), 2);
+            data.hands{i_condition}(invalid, :) = [];
         
-        [~, I] = min(abs(data.hands{i_condition}(:, 1) - t_drift(i_condition)));
+            [~, I] = min(abs(data.hands{i_condition}(:, 1) - t_drift(i_condition)));
         
-        dt = (data.hands{i_condition}(I, 1) - t_drift(i_condition)) * 3600 * 24 * 1000;
+            dt = (data.hands{i_condition}(I, 1) - t_drift(i_condition)) * 3600 * 24 * 1000;
         
-        if(dt > 100)
-            warning('No sample found within 10ms (%f)', dt);
-        else
-            handp(i_participant, i_condition) = data.hands{i_condition}(I, 2);
+            if(dt > 100)
+                warning('No sample found within 10ms (%f)', dt);
+            else
+                handp(i_participant, i_condition) = data.hands{i_condition}(I, 2);
+            end
+        catch
+            warning('Skipping partitipant %d because hand data is missing', i_participant);
+            handp(i_participant, i_condition) = NaN;
         end
     end
 end
@@ -43,12 +48,12 @@ handp(:, 1) = [];
 
 figure (5),
 for i_participant = 1:n_participants
-    subplot(2, 4, i_participant); cla; hold on;
+    subplot(4, 5, i_participant); cla; hold on;
     plot(drift(i_participant, 1:3) * 100, 'bo-');
-    plot(handp(i_participant, 1:3) / 10, 'rx-');
+    plot(handp(i_participant, 1:3) / 10, 'ro-');
     
     plot(4:6, drift(i_participant, 4:6) * 100, 'bo-');
-    plot(4:6, handp(i_participant, 4:6) / 10, 'rx-');
+    plot(4:6, handp(i_participant, 4:6) / 10, 'ro-');
     
     plot([0 5 10], 'k--');
     plot(4:6, [0 5 10], 'k--');
@@ -60,22 +65,25 @@ for i_participant = 1:n_participants
     set(gca, 'XTick', 1:6);
     set(gca, 'XTickLabel', config_.conditionsShort(2:end));
     
+
+    
     title(config_.participants{i_participant, 1});
 end
 
 figure(7);
 subplot(1, 2, 1); cla; hold on;
 plot(nanmean(drift(:, 1:3)) * 100, 'bo-');
-plot(nanmean(handp(:, 1:3)) / 10, 'rx-');
+plot(nanmean(handp(:, 1:3)) / 10, 'ro-');
 
 plot(4:6, nanmean(drift(:, 4:6)) * 100, 'bo-');
-plot(4:6, nanmean(handp(:, 4:6)) / 10, 'rx-');
+plot(4:6, nanmean(handp(:, 4:6)) / 10, 'ro-');
 
 for i = 1:6
     errorbar(i, nanmean(drift(:, i)) * 100, nanstd(drift(:, i) * 100) /sqrt(8), 'Color', 'blue');
     errorbar(i, nanmean(handp(:, i)) / 10, nanstd(handp(:, i) / 10) / sqrt(8), 'Color', 'red');
 end
 
+    legend ({'Perceived Position', 'Real Position'});
 xlabel('Condition');
 ylabel('Position (cm)');
 set(gca, 'XTick', 1:6);
