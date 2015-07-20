@@ -6,6 +6,10 @@ function plot_diverging_stacked_bar(data, Y, cfg)
     if(nargin < 2)
         Y = 1:size(data, 1);        
     end
+
+    if(nargin < 3)
+        cfg = struct();
+    end
     
     if(~isfield(cfg, 'plot_vertical_line'))
         cfg.plot_vertical_line = 1;

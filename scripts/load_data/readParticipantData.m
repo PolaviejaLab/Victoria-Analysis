@@ -26,11 +26,17 @@ function data = readParticipantData(participant, datetime, directory, debug)
         error('Directory %s does not exist.', directory);
     end
     
-    files = dir(fullfile(directory, [datetime(1:10) '*']));
-        
+    pattern = fullfile(directory, [datetime(1:10) '*']);
+    files = dir(pattern);
+    
+    if numel(files) == 0
+        error('Could not find any files: %s', pattern);
+    end
+    
     % Get time of first file in dataset
     time = time_from_datetime(datetime);    
     results = {};
+    hand_positions = cell(0, 1);
     
     for i_file = 1:numel(files)
         % Skip files that have a timestamp in the past
@@ -39,7 +45,9 @@ function data = readParticipantData(participant, datetime, directory, debug)
         
         if(file_time < time)
             if(debug), fprintf('Skipping file %s because it is older than %s\n', file_name, datetime); end
-            continue; 
+            continue;
+        else
+            fprintf('Processing file %s\n', file_name);
         end
 
         fullfilename = fullfile(directory, file_name);
@@ -58,11 +66,10 @@ function data = readParticipantData(participant, datetime, directory, debug)
                     trial_nr = str2double(tokens{1});
 
                     fprintf('Reading hand positions for trial %d\n', trial_nr);
-                    hand_positions{trial_nr} = readHandPositions(fullfilename);                    
+                    hand_positions{trial_nr} = readHandPositions(fullfilename);
                 else
                     results{end + 1} = readResultsFile(fullfilename);
-                end
-            
+                end            
             end
         end        
     end
@@ -74,5 +81,6 @@ function data = readParticipantData(participant, datetime, directory, debug)
         'version', 1, ...
         'results', results, ...
         'log', log);
+
     data.hands = hand_positions;
 end

@@ -28,7 +28,16 @@ function config()
         'Jimmy', '2015-06-11 06.13', fullfile(dataDirectory, 'Subject7');
         'InesV', '2015-06-12 03.40', fullfile(dataDirectory, 'Subject8');
         'Bryan', '2015-06-12 04.57', fullfile(dataDirectory, 'Subject9');
-        'Maria', '2015-06-15 03.13', fullfile(dataDirectory, 'Subject10');       
+        'Maria', '2015-06-15 03.13', fullfile(dataDirectory, 'Subject10');
+        'Robert', '2015-07-08 01.06', fullfile(dataDirectory, 'Subject11');
+        'InesCoelho', '2015-07-08 02.28', fullfile(dataDirectory, 'Subject12');
+        'MartaCamacho', '2015-07-08 03.38', fullfile(dataDirectory, 'Subject13');
+        'JoseM', '2015-07-09 12.28', fullfile(dataDirectory, 'Subject14');
+        'G', '2015-07-09 04.32', fullfile(dataDirectory, 'Subject15');
+        'Mario', '2015-07-09 05.56', fullfile(dataDirectory, 'Subject16');
+        'VC', '2015-07-15 08.08', fullfile(dataDirectory, 'Subject17');
+        'RF', '2015-07-15 09.56', fullfile(dataDirectory, 'Subject18');
+        '19', '2015-07-15 04.31', fullfile(dataDirectory, 'Subject19');
         };
     
     config_.conditionsShort = { ...
