@@ -6,10 +6,11 @@
 %  1. Continuous limb, offset = 0cm
 %  3. Continuous limb, offset = 10cm
 %  4. Discontinuous limb, offset = 0cm
+%  6. Discontinuous limb, offset = 10 cm 
 %
 % Question groups (plots):
 %  1-4. Ownership
-%  7-10. Agency
+%  7-9. Agency
 
 [~, cube] = orderresponses();
 
