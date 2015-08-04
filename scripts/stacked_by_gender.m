@@ -1,5 +1,6 @@
 %
-% This script makes an alternative plot for on the 2015 retreat poster
+% This script makes an stacked plots for ownership and agency, dividing by
+% male and female
 %
 
 % Conditions:
