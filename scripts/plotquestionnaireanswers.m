@@ -5,6 +5,8 @@ global config_;
 conditions = [1 3 4 6];
 questions = [1 1 1 1 2 2 3 3 3 4 4 4 5 5];
 
+type = 1;
+
 data_vector = zeros (1, size (cube, 3));
 condition_matrix = zeros (size (cube, 1), size (cube, 3));
 
@@ -17,8 +19,11 @@ for i = 1:numel(conditions)
     for i_question = 1:size(cube, 1)
         type_question = questions(i_question);
         
-        [colordots] = formatquestionnaireplot (i_condition, ...
-            type_question, i_question);
+        [colordots, colorrectangle] = formatquestionnaireplot ...
+            (type_question);
+        
+        rectangle ('position', [(i_question - 0.5) 0 1 8], ...
+            'facecolor', colorrectangle, 'linestyle', 'none'); hold on;
         
         for i_subject = 1:size(cube, 3)
             data_vector(i_subject) = cube(i_question, i_condition, ...
@@ -29,8 +34,10 @@ for i = 1:numel(conditions)
         
         scatter (((i_question-0.02*length(data_vector)) + ...
             (1:length(data_vector))*0.04), data_vector, colordots); hold on
+        
     end
     
+    formataxis(i_condition, type);
     boxplot (condition_matrix', 'colors', 'k');
     
 end
