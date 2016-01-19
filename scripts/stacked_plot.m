@@ -16,7 +16,7 @@
 
 
 
-figure(3)
+figure,
 conditions = [1 3 4 6];
 ownership = nan(numel(conditions), size(cube, 3) * 4);
 agency = nan(numel(conditions), size(cube, 3) * 4);
@@ -29,9 +29,20 @@ for i = 1:numel(conditions)
 end
 
 
-x_lim = [-70 80];
-text_x = -95;
+x_lim = [-60 80];
 
-formatstackedbars (ownership, agency, numel(conditions), x_lim, text_x)
+    
+%     C = [1.0 0.0 0.0;
+%          1.0 0.3 0.3;
+%          1.0 0.6 0.6;
+%          0.6 0.6 0.6;
+%          0.6 0.6 1.0;
+%          0.3 0.3 1.0;
+%          0.0 0.0 1.0];
+
+
+formatstackedbars (ownership, agency, numel(conditions), x_lim, -80);
+
+
 fig3 = figure(3);
    set(fig3,'units','normalized', 'Position', [0.1 0.1 0.6 0.8])

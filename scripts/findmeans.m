@@ -1,23 +1,37 @@
-function [mnArray_ownership, mnArray_agency] = findmeans ()
+function [own_mnArray, owcont_mnArray, agn_mnArray] = ...
+    findmeans ()
 
 [~, cube] = orderresponses();
 
+ow_questions = 1:4;
+owcnt_questions = 5:6;
+ag_questions = 7:9;
+
 conditions = [1 3 4 6];
 
-mnArray_ownership = zeros(4,1);
-mnArray_agency = zeros (4, 1);
-stdvArray_ownership = zeros(4, 1);
-stdvArray_agency = zeros (4, 1);
+own_mnArray = zeros(4, 1);
+owcont_mnArray = zeros(4, 1);
+agn_mnArray = zeros (4, 1);
+
+ow_stdvArray = zeros(4, 1);
+owcnt_stdvArray = zeros(4, 1); 
+agn_stdvArray = zeros (4, 1);
 
 for i_condition = 1:length(conditions)
-    ownership = reshape(squeeze(cube(1:4, i_condition, :)), [19*4, 1]);
-    agency = reshape(squeeze(cube(7:9, i_condition, :)), [19*3, 1]);
+    ownership = reshape(squeeze(cube(ow_questions, ...
+        conditions(i_condition), :)), [19*4, 1]);
+    owControl = reshape(squeeze(cube(owcnt_questions, ...
+        conditions(i_condition), :)), [19*2, 1]);
+    agency = reshape(squeeze(cube(ag_questions, ...
+        conditions(i_condition), :)), [19*3, 1]);
     
-    mnArray_ownership(i_condition) = mean(ownership);
-    mnArray_agency(i_condition) = mean(agency);
     
-    stdvArray_ownership(i_condition) = std(ownership);
-    stdvArray_agency(i_condition) = std(agency);
+    own_mnArray(i_condition) = mean(ownership);
+    owcont_mnArray(i_condition) = mean(owControl);
+    agn_mnArray(i_condition) = mean(agency);
+    
+    ow_stdvArray(i_condition) = std(ownership);
+    owcnt_stdvArray(i_condition) = std(owControl);
+    agn_stdvArray(i_condition) = std(agency);
 end
-
 end

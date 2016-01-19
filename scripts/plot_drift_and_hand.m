@@ -46,7 +46,7 @@ end
 drift(:, 1) = [];
 handp(:, 1) = [];
 
-figure (5),
+figure,
 for i_participant = 1:n_participants
     subplot(4, 5, i_participant); cla; hold on;
     plot(drift(i_participant, 1:3) * 100, 'bo-');
@@ -70,7 +70,7 @@ for i_participant = 1:n_participants
     title(config_.participants{i_participant, 1});
 end
 
-figure(7);
+figure,
 % subplot(1, 2, 1);
 cla; hold on;
 plot(nanmean(drift(:, 1:3)) * 100, 'bo-', 'linewidth', 1.5);
@@ -88,14 +88,15 @@ end
 
 legend ({'Perceived Position', 'Real Position'}, 'location', 'northwest', 'FontSize', 14);
 ylim ([-3 11])
-xlabel('Condition', 'fontsize', 16);
-ylabel('Position (cm)', 'fontsize', 16);
+xlabel('Condition', 'fontsize', 16, 'FontWeight', 'bold');
+ylabel('Position (cm)', 'fontsize', 16, 'FontWeight', 'bold');
 set(gca, 'XTick', 1:6);
-set(gca, 'XTickLabel', config_.conditionsShort(2:end));
+set(gca, 'XTickLabel', config_.conditionsShort(2:end), 'FontSize', 14);
+line([],[], 'color', 'k', 'linestyle', ':');
 
 
-fig7 = figure(7);
-   set(fig7,'units','normalized', 'Position', [0.1 0.1 0.5 0.35])
+fig = figure;
+   set(fig,'units','normalized', 'Position', [0.1 0.1 0.5 0.35])
 
 %     subplot(1, 2, 1);
 %     plot(hands(2:end, 1) / 10 + 1, '.-');

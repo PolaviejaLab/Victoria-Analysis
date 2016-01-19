@@ -16,28 +16,28 @@ plot_diverging_stacked_bar([ownership; agency], [1:4 6:9], ...
     struct('plot_vertical_line', 0));
 
 text(0, 0, 'Ownership', 'HorizontalAlignment', 'Center', 'FontSize', ...
-    20, 'FontWeight', 'Bold');
+    22, 'FontWeight', 'Bold');
 text(0, conditions + 1, 'Agency', 'HorizontalAlignment', 'Center', ...
-    'FontSize', 20, 'FontWeight', 'Bold');
+    'FontSize', 22, 'FontWeight', 'Bold');
 
 
 xlim (x_lim);
-set(gca, 'XTick', min(x_lim):10:max(x_lim), 'FontSize', 13.5);
-xlabel('Frequency', 'FontSize', 16, 'FontWeight', 'Bold');
+set(gca, 'XTick', min(x_lim):10:max(x_lim), 'FontSize', 17);
+xlabel('Frequency', 'FontSize', 19, 'FontWeight', 'Bold');
 ylabel('Condition');
 
 for y = [0 conditions + 1]
-    text(text_x, y + 0.85, 'Continuous limb', 'FontSize', 13.5);
-    text(text_x, y + 1.19, 'No offset (0cm)', 'FontSize', 13.5);
+    text(text_x, y + 0.85, 'Continuous limb', 'FontSize', 15, 'FontWeight', 'Bold');
+    text(text_x, y + 1.19, 'No offset (0cm)', 'FontSize', 15, 'FontWeight', 'Bold');
 
-    text(text_x, y + 1.85, 'Continuous limb', 'FontSize', 13.5);
-    text(text_x, y + 2.19, 'Offset (10cm)', 'FontSize', 13.5);
+    text(text_x, y + 1.85, 'Continuous limb', 'FontSize', 15, 'FontWeight', 'Bold');
+    text(text_x, y + 2.19, 'Offset (10cm)', 'FontSize', 15, 'FontWeight', 'Bold');
 
-    text(text_x, y + 2.85, 'Discontinuous limb', 'FontSize', 13.5);
-    text(text_x, y + 3.19, 'Offset (0cm)', 'FontSize', 13.5);
+    text(text_x, y + 2.85, 'Discontinuous limb', 'FontSize', 15, 'FontWeight', 'Bold');
+    text(text_x, y + 3.19, 'Offset (0cm)', 'FontSize', 15, 'FontWeight', 'Bold');
     
-    text(text_x, y + 3.85, 'Discontinuous limb', 'FontSize', 13.5);
-    text(text_x, y + 4.19, 'Offset (10cm)', 'FontSize', 13.5);
+    text(text_x, y + 3.85, 'Discontinuous limb', 'FontSize', 15, 'FontWeight', 'Bold');
+    text(text_x, y + 4.19, 'Offset (10cm)', 'FontSize', 15, 'FontWeight', 'Bold');
 end
 
 shg; 
